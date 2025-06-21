@@ -21,7 +21,7 @@
       @for ($i = 0; $i < 8; $i++)
         <div class="product__item">
           <a href="/">
-            <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="" />
+            <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像"/>
             <div>商品名</div>
           </a>
         </div>

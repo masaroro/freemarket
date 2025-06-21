@@ -14,7 +14,7 @@
 @section('content')
   <div class="detail__content">
     <div class="detail__img">
-      <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="" />
+      <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像" />
     </div>
     <div class="detail__item">
       <div class="detail__item__title">
@@ -28,35 +28,50 @@
         <span>47,000</span>
         <span>(税込)</span>
       </div>
-      <div>
-        <div>☆</div>
-        <div>コメント</div>
+      <div class="detail__item-assessment">
+        <div>
+          ☆
+          <span>3</span>
+        </div>
+        <div>
+          ○
+          <span>1</span>
+        </div>
       </div>
-      <div>
+      <div class="detail__item-button">
         <button>購入手続きへ</button>
       </div>
-      <div>
+      <div class="detail__item-description">
         商品説明
       </div>
-      <div>
-        カラーグレー
+      <div class="detail__item-text">
+        <textarea name="description" readonly>カラーグレー</textarea>
       </div>
-      <div>
+      <div class="detail__item-info">
         商品の情報
       </div>
-      <div>
-        カテゴリー
+      <div class="detail__item-info">
+        <table>
+          <tr>
+            <th>カテゴリー</th>
+            <td>
+              <span>洋服</span>
+              <span>メンズ</span>
+            </td>
+          </tr>
+          <tr>
+            <th>商品の状態</th>
+            <td>良好</td>
+          </tr>
+        </table>
       </div>
-      <div>
-        商品の状態
-      </div>
-      <div>
+      <div class="detail__item-comment">
         <div>コメント</div>
         <div>admin</div>
         <div>ここにコメントが入ります。</div>
         <div>商品へのコメント</div>
         <div>
-          <input type="text">
+          <input type="text" name="comment"/>
         </div>
       </div>
       <div>
