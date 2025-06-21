@@ -58,6 +58,7 @@
 -   MySQL 8.0.26
 
 ## テーブル設計
+![alt text](./テーブル仕様_freemarket.png)
 
 ## ER 図
 
