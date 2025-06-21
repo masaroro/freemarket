@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('order');
-});
+// Route::get('/', function () {
+//     return view('order');
+// });
 
 
+Route::get('/', [ItemController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'register']);
+Route::get('/login', [RegisterController::class, 'login']);
+Route::get('/item/{item_id}', [ItemController::class, 'detail']);
+Route::get('/purchase/{item_id}', [OrderController::class, 'index']);
+Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit']);
+Route::get('/sell', [OrderController::class, 'create']);
+Route::get('/mypage', [RegisterController::class, 'index']);
+Route::get('/mypage/profile', [RegisterController::class, 'edit']);
