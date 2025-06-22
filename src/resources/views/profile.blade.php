@@ -6,8 +6,11 @@
 
 @section('head')
   <input type="text" placeholder="何をお探しですか？">
-  <a href="/">ログイン</a>
-  <a href="/">マイページ</a>
+  <form class="header-nav__form" action="/logout" method="post">
+    @csrf
+      <input type="submit" class="header-nav__button" value="ログアウト">
+  </form>
+  <a href="/mypage">マイページ</a>
   <a href="/">出品</a>
 @endsection
 
@@ -30,7 +33,7 @@
       @for ($i = 0; $i < 8; $i++)
         <div class="profile__item">
           <a href="/">
-            <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="" />
+            <img src="{{ asset('storage/images/01_Clock.jpg') }}" alt="商品画像" />
             <div>商品名</div>
           </a>
         </div>

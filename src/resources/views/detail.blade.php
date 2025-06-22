@@ -6,9 +6,16 @@
 
 @section('head')
   <input type="text" placeholder="何をお探しですか？">
-  <a href="/">ログイン</a>
-  <a href="/">マイページ</a>
-  <a href="/">出品</a>
+  @if (Auth::check())
+    <form class="header-nav__form" action="/logout" method="post">
+    @csrf
+      <button class="header-nav__button">ログアウト</button>
+    </form>
+  @else
+    <a href="/login">ログイン</a>
+  @endif
+  <a href="/mypage">マイページ</a>
+  <a href="/sell">出品</a>
 @endsection
 
 @section('content')

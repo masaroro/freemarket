@@ -12,7 +12,7 @@
       </h2>
     </div>
     <div class="setting__item">
-      <form class="setting__form" action="/" method="post">
+      <form class="setting__form" action="/mypage/profile" method="post" enctype="multipart/form-data">
       @csrf
         <div class="setting__item">
           <div class="setting__img">

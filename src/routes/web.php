@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +20,14 @@ use App\Http\Controllers\RegisterController;
 //     return view('order');
 // });
 
-
 Route::get('/', [ItemController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'register']);
-Route::get('/login', [RegisterController::class, 'login']);
+
 Route::get('/item/{item_id}', [ItemController::class, 'detail']);
-Route::get('/purchase/{item_id}', [OrderController::class, 'index']);
-Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit']);
-Route::get('/sell', [OrderController::class, 'create']);
-Route::get('/mypage', [RegisterController::class, 'index']);
-Route::get('/mypage/profile', [RegisterController::class, 'edit']);
+
+Route::middleware(['auth', 'verified'])->group(function () {
+  Route::get('/purchase/{item_id}', [OrderController::class, 'index']);
+  Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit']);
+  Route::get('/sell', [OrderController::class, 'create']);
+  Route::get('/mypage', [ProfileController::class, 'index']);
+  Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+});
