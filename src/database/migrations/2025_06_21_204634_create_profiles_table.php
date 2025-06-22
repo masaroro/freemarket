@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListingCategoryTable extends Migration
+class CreateProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateListingCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('listing_category', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('image')->nullable();
+            $table->string('postal_code');
+            $table->string('address');
+            $table->string('building');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateListingCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('listing_category');
+        Schema::dropIfExists('profiles');
     }
 }

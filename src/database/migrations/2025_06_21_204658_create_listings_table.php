@@ -15,7 +15,16 @@ class CreateListingsTable extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('seller_id')->constrained('users')->cascadeOnDelete();
+            $table->string('image');
+            $table->tinyInteger('status'); //0:良好 1:目立った傷や汚れなし 2:やや傷や汚れあり 3:状態が悪い
+            $table->string('name');
+            $table->string('brand');
+            $table->text('description');
+            $table->integer('price');
+            $table->boolean('is_sold');
             $table->timestamps();
+            $table->timestamp('sold_at')->nullable();
         });
     }
 
