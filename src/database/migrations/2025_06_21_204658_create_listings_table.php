@@ -19,7 +19,7 @@ class CreateListingsTable extends Migration
             $table->string('image');
             $table->tinyInteger('status'); //0:良好 1:目立った傷や汚れなし 2:やや傷や汚れあり 3:状態が悪い
             $table->string('name');
-            $table->string('brand');
+            $table->string('brand')->nullable();
             $table->text('description');
             $table->integer('price');
             $table->boolean('is_sold');
