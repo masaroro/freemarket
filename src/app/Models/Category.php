@@ -12,4 +12,8 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function listings(){
+        return $this->belongsToMany(Listing::class);
+    }
 }

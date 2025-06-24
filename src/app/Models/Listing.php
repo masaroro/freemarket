@@ -24,4 +24,16 @@ class Listing extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'listing_category', 'listing_id', 'category_id');
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
 }

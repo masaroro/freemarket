@@ -12,4 +12,13 @@ class Review extends Model
     protected $fillable = [
         'comment',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function listing(){
+        return $this->belongsTo(Listing::class);
+    }
+
 }

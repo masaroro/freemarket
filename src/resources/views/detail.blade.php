@@ -25,14 +25,14 @@
     </div>
     <div class="detail__item">
       <div class="detail__item__title">
-        <h2>商品名がここに入る</h2>
+        <h2>{{ $listing->name }}</h2>
       </div>
-      <div class="detail__item-bland">
-        <p>ブランド名</p>
+      <div class="detail_ _item-bland">
+        <p>{{ $listing->brand }}</p>
       </div>
       <div class="detail__item-price">
         <span>￥</span>
-        <span>47,000</span>
+        <span>{{ $listing->price }}</span>
         <span>(税込)</span>
       </div>
       <div class="detail__item-assessment">
@@ -52,7 +52,7 @@
         商品説明
       </div>
       <div class="detail__item-text">
-        <textarea name="description" readonly>カラーグレー</textarea>
+        <textarea name="description" readonly>{{ $listing->description }}</textarea>
       </div>
       <div class="detail__item-info">
         商品の情報
@@ -62,13 +62,24 @@
           <tr>
             <th>カテゴリー</th>
             <td>
-              <span>洋服</span>
-              <span>メンズ</span>
+              @foreach ($listing->categories as $category)
+                <span>{{ $category->name }}</span>
+              @endforeach
             </td>
           </tr>
           <tr>
             <th>商品の状態</th>
-            <td>良好</td>
+            <td>
+              @if( $listing->status === 0 )
+                <span>良好</span>
+              @elseif( $listing->status === 1 )
+                <span>目立った傷や汚れなし</span>
+              @elseif( $listing->status === 2 )
+                <span>やや傷や汚れあり</span>
+              @elseif( $listing->status === 3 )
+                <span>状態が悪い</span>
+              @endif
+            </td>
           </tr>
         </table>
       </div>

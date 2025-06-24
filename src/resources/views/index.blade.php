@@ -27,7 +27,7 @@
     <div class="item__list">
       @foreach ($listings as $listing)
         <div class="item__item">
-          <a href="/">
+          <a href="/item/{{$listing->id}}" class="item__link">
             <img src="{{ asset($listing->image) }}" alt="商品画像"/>
             <div>{{$listing->name}}</div>
           </a>
