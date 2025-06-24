@@ -21,7 +21,7 @@
 @section('content')
   <div class="detail__content">
     <div class="detail__img">
-      <img src="{{ asset('storage/images/01_Clock.jpg') }}" alt="商品画像" />
+      <img src="{{ asset($listing->image) }}" alt="商品画像" />
     </div>
     <div class="detail__item">
       <div class="detail__item__title">
@@ -32,21 +32,29 @@
       </div>
       <div class="detail__item-price">
         <span>￥</span>
-        <span>{{ $listing->price }}</span>
+        <span>{{ number_format($listing->price) }}</span>
         <span>(税込)</span>
       </div>
       <div class="detail__item-assessment">
         <div>
-          ☆
+          <a class="detail__item-favorite" href="/">
+            <img src="/images/favorite.png" alt="">
+          </a>
           <span>3</span>
         </div>
         <div>
-          ○
+          <a class="detail__item-favorite" href="/">
+            <img src="/images/comment.png" alt="">
+          </a>
           <span>1</span>
         </div>
       </div>
-      <div class="detail__item-button">
-        <button>購入手続きへ</button>
+      <a href="/purchase/{{ $listing->id }}">購入手続きへa</a>
+      <form action="/purchase/{{ $listing->id }}" method="get">
+        @csrf
+        <button type="submit" class="detail__item-button">購入手続きへ</button>
+        <input type="hidden" name="item_id" value="{{ $listing->id }}">
+      </form>
       </div>
       <div class="detail__item-description">
         商品説明

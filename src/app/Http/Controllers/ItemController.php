@@ -21,6 +21,6 @@ class ItemController extends Controller
         $listing = Listing::with(['user', 'categories', 'likes', 'reviews'])->find($item_id);
         $categories = Category::all();
         $reviews = Review::where('listing_id', $item_id)->with(['user'])->get();
-        return view('detail',compact('listing', 'categories'));
+        return view('detail',compact('listing', 'categories', 'reviews'));
     }
 }

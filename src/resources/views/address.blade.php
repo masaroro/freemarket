@@ -4,6 +4,20 @@
   <link rel="stylesheet" href="{{ asset('css/address.css') }}" />
 @endsection
 
+@section('head')
+  <input type="text" placeholder="何をお探しですか？">
+  @if (Auth::check())
+    <form class="header-nav__form" action="/logout" method="post">
+    @csrf
+      <input type="submit" class="header-nav__button" value="ログアウト">
+    </form>
+  @else
+    <a href="/login">ログイン</a>
+  @endif
+  <a href="/mypage">マイページ</a>
+  <a href="/sell">出品</a>
+@endsection
+
 @section('content')
   <div class="address__content">
     <div class="address__heading">

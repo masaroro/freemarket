@@ -11,7 +11,9 @@ use App\Models\Category;
 class OrderController extends Controller
 {
     public function index($item_id){
-        return view('order');
+        $listing = Listing::with(['user', 'categories'])->find($item_id);
+        $profile = Profile::where('user_id', auth()->id())->first();
+        return view('order',compact('listing', 'profile'));
     }
 
     public function edit($item_id){
