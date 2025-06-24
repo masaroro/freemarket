@@ -13,7 +13,8 @@ use App\Models\Review;
 class ItemController extends Controller
 {
     public function index(){
-        return view('index');
+        $listings = Listing::with(['user'])->paginate(10);
+        return view('index',compact('listings'));
     }
 
     public function detail($item_id){

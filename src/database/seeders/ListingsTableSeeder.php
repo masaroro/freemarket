@@ -17,7 +17,7 @@ class ListingsTableSeeder extends Seeder
         DB::table('listings')->insert([
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/01_Clock.png',
+                'image' => 'storage/images/01_Clock.jpg',
                 'status' => 0,
                 'name' => '腕時計',
                 'brand' => '',
@@ -27,7 +27,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/02_HardDisk.png',
+                'image' => 'storage/images/02_HardDisk.jpg',
                 'status' => 1,
                 'name' => 'HDD',
                 'brand' => '',
@@ -37,7 +37,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/03_Onion.png',
+                'image' => 'storage/images/03_Onion.jpg',
                 'status' => 2,
                 'name' => '玉ねぎ3束',
                 'brand' => '',
@@ -47,7 +47,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/04_LeatherShoes.png',
+                'image' => 'storage/images/04_LeatherShoes.jpg',
                 'status' => 3,
                 'name' => '革靴',
                 'brand' => '',
@@ -57,7 +57,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/05_Laptop.png',
+                'image' => 'storage/images/05_Laptop.jpg',
                 'status' => 0,
                 'name' => 'ノートPC',
                 'brand' => '',
@@ -67,7 +67,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/06_Mike.png',
+                'image' => 'storage/images/06_Mike.jpg',
                 'status' => 1,
                 'name' => 'マイク',
                 'brand' => '',
@@ -77,7 +77,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/07_Bag.png',
+                'image' => 'storage/images/07_Bag.jpg',
                 'status' => 2,
                 'name' => 'ショルダーバッグ',
                 'brand' => '',
@@ -87,7 +87,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/08_Tumbler.png',
+                'image' => 'storage/images/08_Tumbler.jpg',
                 'status' => 3,
                 'name' => 'タンブラー',
                 'brand' => '',
@@ -97,7 +97,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/09_CoffeeGrinder.png',
+                'image' => 'storage/images/09_CoffeeGrinder.jpg',
                 'status' => 0,
                 'name' => 'コーヒーミル',
                 'brand' => '',
@@ -107,7 +107,7 @@ class ListingsTableSeeder extends Seeder
             ],
             [
                 'seller_id' => 1,
-                'image' => 'storage/images/10_外出メイクアップセット.png',
+                'image' => 'storage/images/10_外出メイクアップセット.jpg',
                 'status' => 1,
                 'name' => 'メイクセット',
                 'brand' => '',

@@ -19,20 +19,20 @@
 @endsection
 
 @section('content')
-  <div class="product__content">
-    <div class="product__tag">
+  <div class="item__content">
+    <div class="item__tag">
       <a href="">おすすめ</a>
       <a href="">マイリスト</a>
     </div>
-    <div class="product__list">
-      @for ($i = 0; $i < 8; $i++)
-        <div class="product__item">
+    <div class="item__list">
+      @foreach ($listings as $listing)
+        <div class="item__item">
           <a href="/">
-            <img src="{{ asset('storage/images/01_Clock.jpg') }}" alt="商品画像"/>
-            <div>商品名</div>
+            <img src="{{ asset($listing->image) }}" alt="商品画像"/>
+            <div>{{$listing->name}}</div>
           </a>
         </div>
-      @endfor
+      @endforeach
     </div>
   </div>
 @endsection('content')

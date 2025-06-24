@@ -19,12 +19,22 @@
             メールアドレスで検索
           </div>
           <input class="login__item-input" type="email" name="email" value="{{ old('email') }}" >
+          <div class="error">
+            @error('email')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="login__item">
           <div class="login__item-label">
             パスワード
           </div>
           <input class="login__item-input" type="password" name="password" >
+          <div class="error">
+            @error('password')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="login__button">
           <button>ログインする</button>

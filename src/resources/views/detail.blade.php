@@ -21,7 +21,7 @@
 @section('content')
   <div class="detail__content">
     <div class="detail__img">
-      <img src="{{ asset('storage/images/Armani+Mens+Clock.jpg') }}" alt="商品画像" />
+      <img src="{{ asset('storage/images/01_Clock.jpg') }}" alt="商品画像" />
     </div>
     <div class="detail__item">
       <div class="detail__item__title">
