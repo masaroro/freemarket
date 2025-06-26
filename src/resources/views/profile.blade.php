@@ -23,21 +23,21 @@
       <div class="profile__user-name">
         ユーザー名
       </div>
-      <a href="/" class="profile__user-edit">プロフィールを編集</a>
+      <a href="/mypage/profile" class="profile__user-edit">プロフィールを編集</a>
     </div>
     <div class="profile__tag">
       <a href="">出品した商品</a>
       <a href="">購入した商品</a>
     </div>
     <div class="profile__list">
-      @for ($i = 0; $i < 8; $i++)
+      @foreach ($listings as $listing)
         <div class="profile__item">
-          <a href="/">
-            <img src="{{ asset('storage/images/01_Clock.jpg') }}" alt="商品画像" />
-            <div>商品名</div>
+          <a href="/item/{{$listing->id}}" class="profile__item-link">
+            <img src="{{ asset($listing->image) }}" alt="商品画像" />
+            <div>{{$listing->name}}</div>
           </a>
         </div>
-      @endfor
+      @endforeach
     </div>
   </div>
 @endsection('content')
