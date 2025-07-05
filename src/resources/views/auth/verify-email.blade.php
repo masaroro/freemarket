@@ -18,11 +18,11 @@
         </div>
       @endif
 
-      <div>
-        <button>認証はこちらから</button>
+      <div class="verify-email__actions">
+        <a href="https://mailtrap.io/inboxes" class="verify-email__button">認証はこちらから</a>
       </div>
 
-      <form action="" method="post">
+      <form action="{{ route('logout') }}" method="post">
         @csrf
         <div class="verify-email__actions">
           <button type="submit" class="verify-email__button">

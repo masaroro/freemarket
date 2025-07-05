@@ -30,4 +30,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/sell', [OrderController::class, 'create']);
   Route::get('/mypage', [ProfileController::class, 'index']);
   Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+  Route::post('/mypage/profile', [ProfileController::class, 'update']);
 });

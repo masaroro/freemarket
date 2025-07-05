@@ -21,6 +21,7 @@ class OrderController extends Controller
     }
 
     public function create(){
-        return view('listing');
+        $categories = Category::all();
+        return view('listing', compact('categories'));
     }
 }

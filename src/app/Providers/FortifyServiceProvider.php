@@ -42,9 +42,9 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.verify-email');
         });
 
-        Fortify::redirects('login', '/');
-
         Fortify::redirects('email-verification', '/mypage/profile');
+
+        Fortify::redirects('login', '/');
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

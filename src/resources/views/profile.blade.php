@@ -11,7 +11,7 @@
       <input type="submit" class="header-nav__button" value="ログアウト">
   </form>
   <a href="/mypage">マイページ</a>
-  <a href="/">出品</a>
+  <a href="/sell">出品</a>
 @endsection
 
 @section('content')

@@ -11,7 +11,7 @@
       <input type="submit" class="header-nav__button" value="ログアウト">
   </form>
   <a href="/mypage">マイページ</a>
-  <a href="/">出品</a>
+  <a href="/sell">出品</a>
 @endsection
 
 @section('content')
@@ -36,24 +36,44 @@
             ユーザー名
           </div>
           <input class="setting__item-input" type="text" name="name" value="{{ Auth::user()->name }}">
+          <div class="error">
+            @error('name')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="setting__item">
           <div class="setting__item-label">
             郵便番号
           </div>
           <input class="setting__item-input" type="text" name="postal_code" value="{{ Auth::user()->postal_code }}">
+          <div class="error">
+            @error('postal_code')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="setting__item">
           <div class="setting__item-label">
             住所
           </div>
           <input class="setting__item-input" type="text" name="address" value="{{ Auth::user()->address }}">
+          <div class="error">
+            @error('address')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="setting__item">
           <div class="setting__item-label">
             建物名
           </div>
           <input class="setting__item-input" type="text" name="building" value="{{ Auth::user()->building }}">
+          <div class="error">
+            @error('building')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="setting__button">
           <button>更新する</button>

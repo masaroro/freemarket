@@ -9,10 +9,17 @@ use App\Models\Profile;
 use App\Models\Category;
 use App\Models\Like;
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
     public function index(){
+        $user = Auth::user();
+
+        if ($user && empty($user->profile)) {
+            return redirect('/mypage/profile');
+        }
+
         $listings = Listing::with(['user'])->paginate(10);
         return view('index',compact('listings'));
     }

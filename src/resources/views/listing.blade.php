@@ -5,10 +5,13 @@
 @endsection
 
 @section('head')
-  <input type="text" placeholder="何をお探しですか？">
-  <a href="/">ログイン</a>
-  <a href="/">マイページ</a>
-  <a href="/">出品</a>
+<input type="text" placeholder="何をお探しですか？">
+  <form class="header-nav__form" action="/logout" method="post">
+    @csrf
+      <input type="submit" class="header-nav__button" value="ログアウト">
+  </form>
+  <a href="/mypage">マイページ</a>
+  <a href="/sell">出品</a>
 @endsection
 
 @section('content')
@@ -18,14 +21,14 @@
         商品の出品
       </h2>
     </div>
-    <div class="listing__item">
-      <form class="listing__form" action="/" method="post">
+    <div class="listing__detail">
+      <form class="listing__form" action="/" method="post" enctype="multipart/form-data">
       @csrf
         <div class="listing__item">
           <div class="listing__item-label">
             商品画像
           </div>
-          <div>
+          <div class="listing__item-img">
             <input type="file" name="image"/>
               画像を選択する
           </div>
@@ -39,23 +42,21 @@
           <div class="listing__item-label">
             カテゴリー
           </div>
-          <div class="listing__item-category">
-            <span>ファッション</span>
-            <span>家電</span>            <span>インテリア</span>
-            <span>レディース</span>
-            <span>メンズ</span>
-            <span>コスメ</span>
-            <span>本</span>
-            <span>ゲーム</span>
-            <span>スポーツ</span>
+          <div class="listing__item-categories">
+            @foreach ($categories as $category)
+              <div class="listing__item-category-checkbox">
+                <input type="checkbox" name="categories[]" value="{{ $category->id }}" id="category-{{ $category->id }}">
+                <label for="category-{{ $category->id }}" class="category-label">{{ $category->name }}</label>
+            </div>
+            @endforeach
           </div>
         </div>
         <div class="listing__item">
           <div class="listing__item-label">
             商品の状態
           </div>
-          <select name="" id="">
-            <option value=""></option>
+          <select class="listing__item-select" name="status" id="">
+            <option value="" selected disabled></option>
             <option value="0">良好</option>
             <option value="1">目立った傷や汚れなし</option>
             <option value="2">やや傷や汚れあり</option>
