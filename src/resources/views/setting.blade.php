@@ -26,7 +26,11 @@
       @csrf
         <div class="setting__item">
           <div class="setting__img">
-            <img src="" alt="プロフィール画像">
+            @if ($profile && $profile->image)
+              <img src="{{ asset($profile->image) }}" alt="プロフィール画像">
+            @else
+              <img src="{{ asset('images/default_gray.png') }}" alt="デフォルトプロフィール画像">
+            @endif
             <input type="file" name="image"/>
               画像を選択する
           </div>
@@ -46,7 +50,7 @@
           <div class="setting__item-label">
             郵便番号
           </div>
-          <input class="setting__item-input" type="text" name="postal_code" value="{{ Auth::user()->postal_code }}">
+          <input class="setting__item-input" type="text" name="postal_code" value="{{ $profile->postal_code ?? ''}}">
           <div class="error">
             @error('postal_code')
               {{ $message }}
@@ -57,7 +61,7 @@
           <div class="setting__item-label">
             住所
           </div>
-          <input class="setting__item-input" type="text" name="address" value="{{ Auth::user()->address }}">
+          <input class="setting__item-input" type="text" name="address" value="{{ $profile->address ?? ''}}">
           <div class="error">
             @error('address')
               {{ $message }}
@@ -68,7 +72,7 @@
           <div class="setting__item-label">
             建物名
           </div>
-          <input class="setting__item-input" type="text" name="building" value="{{ Auth::user()->building }}">
+          <input class="setting__item-input" type="text" name="building" value="{{ $profile->building ?? ''}}">
           <div class="error">
             @error('building')
               {{ $message }}

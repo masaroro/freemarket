@@ -18,10 +18,14 @@
   <div class="profile__content">
     <div class="profile__user">
       <div class="profile__user-img">
-        <img src="" alt="ユーザー画像">
+        @if ($profile && $profile->image)
+          <img src="{{ asset($profile->image) }}" alt="プロフィール画像">
+        @else
+          <img src="{{ asset('images/default_gray.png') }}" alt="デフォルトプロフィール画像">
+        @endif
       </div>
       <div class="profile__user-name">
-        ユーザー名
+        {{ $user->name }}
       </div>
       <a href="/mypage/profile" class="profile__user-edit">プロフィールを編集</a>
     </div>
@@ -38,6 +42,9 @@
           </a>
         </div>
       @endforeach
+    </div>
+    <div class="profile__pagination">
+      {{ $listings->links() }}
     </div>
   </div>
 @endsection('content')

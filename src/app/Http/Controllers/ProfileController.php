@@ -8,12 +8,15 @@ use App\Models\Profile;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     public function index(){
-        $listings = Listing::with(['user'])->paginate(10);
-        return view('profile',compact('listings'));
+        $listings = Listing::with(['user'])->paginate(8);
+        $profile = Profile::where('user_id', Auth::id())->first();
+        $user = Auth::user();
+        return view('profile',compact('listings', 'profile', 'user'));
     }
 
     public function edit(){
@@ -40,26 +43,33 @@ class ProfileController extends Controller
             ]
         );
 
-        // updated_at と created_at で初回なのか判定→redirect分岐へ
-        $isFirstUpdate = $profile->created_at->equalTo($profile->updated_at);
-
         if ($request->hasFile('image')) {
-            $file_name = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('public/images', $file_name);
 
-            $profile->image = 'storage/images/' . $file_name;
+            // 画像がアップロードされている場合、既存の画像を削除
+            if ($profile->image && Storage::disk('public')->exists($profile->image)) {
+                Storage::disk('public')->delete($profile->image);
+            }
+
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $file_name = sprintf('%03d',$user->id) . '_profile.' . $extension;
+            $request->file('image')->storeAs('public/images/profile/', $file_name);
+
+            $profile->image = 'storage/images/profile/' . $file_name;
         }
 
         $profile->postal_code = $request->input('postal_code');
         $profile->address = $request->input('address');
         $profile->building = $request->input('building');
 
+        // updated_at と created_at で初回なのか判定→redirect分岐へ
+        $isFirstUpdate = $profile->created_at->equalTo($profile->updated_at);
+
         $profile->save();
 
         if ($isFirstUpdate) {
             return redirect('/');
         } else {
-            return redirect('/mypage');
+            return redirect('/mypage/profile');
         }
     }
 }

@@ -22,7 +22,7 @@
       </h2>
     </div>
     <div class="listing__detail">
-      <form class="listing__form" action="/" method="post" enctype="multipart/form-data">
+      <form class="listing__form" action="/sell" method="post" enctype="multipart/form-data">
       @csrf
         <div class="listing__item">
           <div class="listing__item-label">
@@ -31,6 +31,11 @@
           <div class="listing__item-img">
             <input type="file" name="image"/>
               画像を選択する
+          </div>
+          <div class="error">
+            @error('image')
+              {{ $message }}
+            @enderror
           </div>
         </div>
         <div class="listing__item">
@@ -49,6 +54,11 @@
                 <label for="category-{{ $category->id }}" class="category-label">{{ $category->name }}</label>
             </div>
             @endforeach
+            <div class="error">
+            @error('categories')
+              {{ $message }}
+            @enderror
+          </div>
           </div>
         </div>
         <div class="listing__item">
@@ -62,6 +72,11 @@
             <option value="2">やや傷や汚れあり</option>
             <option value="3">状態が悪い</option>
           </select>
+          <div class="error">
+            @error('status')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="listing__item">
           <div class="listing__item-label">
@@ -73,24 +88,44 @@
             商品名
           </div>
           <input type="text" name="name">
+          <div class="error">
+            @error('name')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="listing__item">
           <div class="listing__item-label">
             ブランド名
           </div>
           <input type="text" name="brand">
+          <div class="error">
+            @error('brand')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="listing__item">
           <div class="listing__item-label">
             商品の説明
           </div>
           <textarea name="description" id=""></textarea>
+          <div class="error">
+            @error('description')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="listing__item">
           <div class="listing__item-label">
             販売価格
           </div>
           <input type="text" name="price" placeholder="¥">
+          <div class="error">
+            @error('price')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="listing__button">
           <button>出品する</button>

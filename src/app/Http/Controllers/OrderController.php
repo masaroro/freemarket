@@ -20,8 +20,4 @@ class OrderController extends Controller
         return view('address');
     }
 
-    public function create(){
-        $categories = Category::all();
-        return view('listing', compact('categories'));
-    }
 }

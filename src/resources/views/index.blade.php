@@ -34,5 +34,8 @@
         </div>
       @endforeach
     </div>
+    <div class="item__pagination">
+      {{ $listings->links() }}
+    </div>
   </div>
 @endsection('content')
