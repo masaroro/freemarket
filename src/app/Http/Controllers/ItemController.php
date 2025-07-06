@@ -29,6 +29,7 @@ class ItemController extends Controller
         $listing = Listing::with(['user', 'categories', 'likes', 'reviews'])->find($item_id);
         $categories = Category::all();
         $reviews = Review::where('listing_id', $item_id)->with(['user'])->get();
+
         return view('detail',compact('listing', 'categories', 'reviews'));
     }
 
@@ -62,5 +63,34 @@ class ItemController extends Controller
         $listing->categories()->sync($request->input('categories'));
 
         return redirect('/mypage');
+    }
+
+    public function like(Request $request, $item_id){
+        $user = Auth::user();
+
+        $like = Like::where('user_id', $user->id)->where('listing_id', $item_id)->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'user_id' => $user->id,
+                'listing_id' => $item_id,
+            ]);
+        }
+
+        return redirect("/item/$item_id/");
+    }
+
+    public function comment(Request $request, $item_id){
+        $user = Auth::user();
+
+        Review::create([
+            'user_id' => $user->id,
+            'listing_id' => $item_id,
+            'comment' => $request->input('comment'),
+        ]);
+
+        return redirect("/item/$item_id/");
     }
 }

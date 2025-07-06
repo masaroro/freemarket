@@ -25,6 +25,8 @@ Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'detail']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
+  Route::post('/item/{item_id}/like', [ItemController::class, 'like']);
+  Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
   Route::get('/purchase/{item_id}', [OrderController::class, 'index']);
   Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit']);
   Route::get('/sell', [ItemController::class, 'create']);

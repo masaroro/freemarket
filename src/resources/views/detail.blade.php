@@ -36,17 +36,16 @@
         <span>(税込)</span>
       </div>
       <div class="detail__item-assessment">
-        <div>
-          <a class="detail__item-favorite" href="/">
-            <img src="/images/favorite.png" alt="">
-          </a>
-          <span>3</span>
-        </div>
-        <div>
-          <a class="detail__item-favorite" href="/">
-            <img src="/images/comment.png" alt="">
-          </a>
-          <span>1</span>
+        <form class="detail__item-like" action="/item/{{$listing->id}}/like" method="post">
+          @csrf
+            <button type="submit" class="detail__item-favorite">
+              <img src="/images/favorite.png" alt="いいねボタン">
+            </button>
+          <span>{{ $listing->likes->count() ?? 0}}</span>
+        </form>
+        <div class="detail__item-favorite">
+          <img src="/images/comment.png" alt="コメント画像">
+          <span>{{ $listing->reviews->count() }}</span>
         </div>
       </div>
       <a href="/purchase/{{ $listing->id }}">購入手続きへa</a>
@@ -92,16 +91,32 @@
         </table>
       </div>
       <div class="detail__item-comment">
-        <div>コメント</div>
-        <div>admin</div>
-        <div>ここにコメントが入ります。</div>
+        <div>コメント({{ $listing->reviews->count() }})</div>
+        @foreach ($reviews as $review)
+          <div class="detail__item-comment__user">
+            <div class="detail__item-comment__user-image">
+              @if ($review->user && $review->user->profile && $review->user->profile->image)
+                <img src="{{ asset($review->user->profile->image) }}" alt="ユーザー画像" />
+              @else
+                <img src="{{ asset('images/default_gray.png') }}" alt="ユーザー画像（default）">
+              @endif
+            </div>
+            <div class="detail__item-comment__user-name">
+              {{ $review->user->name }}
+            </div>
+            <div class="detail__item-comment__user-text">
+              {{ $review->comment }}
+            </div>
+          </div>
+        @endforeach
         <div>商品へのコメント</div>
-        <div>
-          <input type="text" name="comment"/>
-        </div>
-      </div>
-      <div>
-        <button>コメントを送信する</button>
+        <form class="detail__comment" action="/item/{{$listing->id}}/comment" method="post">
+          @csrf
+          <div class="detail__comment-input">
+            <input type="text" name="comment"/>
+          </div>
+          <button type="submit">コメントを送信する</button>
+        </form>
       </div>
     </div>
   </div>
