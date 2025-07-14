@@ -16,6 +16,9 @@ class ItemController extends Controller
 {
     public function index(Request $request){
         $user = Auth::user();
+        $keyword = $request->query('keyword');
+
+        $query = Listing::with(['user', 'likes']);
 
         if ($user && empty($user->profile)) {
             return redirect('/mypage/profile');
@@ -24,18 +27,23 @@ class ItemController extends Controller
         $page = $request->query('page');
 
         if ($page === 'mylist') {
-            $listings = Listing::with(['user', 'likes'])
-            ->whereHas('likes', function($query) use ($user) {
+            $query->whereHas('likes', function($query) use ($user) {
                 $query->where('user_id', $user->id);
-            })
-            ->paginate(8);
-
-            $listings->appends(['page' => 'mylist']);
+            });
         } else {
-            $listings = Listing::with(['user'])->paginate(8);
+            $query->where('seller_id', '!=', $user->id);
         }
 
-        return view('index',compact('listings', 'page'));
+        if ($keyword) {
+            $query->where(function($q) use ($keyword) {
+                $q->where('name', 'LIKE', '%' . $keyword . '%')->orWhere('description', 'LIKE', '%' . $keyword . '%')->orWhere('brand', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+
+        $listings = $query->paginate(8);
+        $listings->appends(['page' => $page, 'keyword' => $keyword]);
+
+        return view('index',compact('listings', 'page', 'keyword'));
     }
 
     public function detail($item_id){

@@ -15,23 +15,30 @@ class ProfileController extends Controller
 {
     public function index(Request $request){
         $user = Auth::user();
+        $keyword = $request->query('keyword');
         $page = $request->query('page');
 
-        if ($page === 'listing') {
-            $listings = Listing::with(['user'])
-            ->where('seller_id', $user->id)->paginate(8);
-            $listings->appends(['page' => 'listing']);
-        } elseif ($page === 'purchase') {
-            $listings = Listing::with(['user', 'orders'])
-            ->whereHas('orders', function($query) use ($user) {
+        $query = Listing::with(['user', 'orders']);
+
+        if ($page === 'purchase') {
+            $query->whereHas('orders', function($query) use ($user) {
                 $query->where('buyer_id', $user->id);
-            })->paginate(8);
-            $listings->appends(['page' => 'purchase']);
+            });
         } else {
-            $listings = Listing::with(['user'])->paginate(8);
+            $query->where('seller_id', $user->id);
+        }
+
+        if ($keyword) {
+            $query->where(function($q) use ($keyword) {
+                $q->where('name', 'LIKE', '%' . $keyword . '%')->orWhere('description', 'LIKE', '%' . $keyword . '%')->orWhere('brand', 'LIKE', '%' . $keyword . '%');
+            });
         }
 
         $profile = Profile::where('user_id', Auth::id())->first();
+
+        $listings = $query->paginate(8);
+        $listings->appends(['page' => $page, 'keyword' => $keyword]);
+
         return view('profile',compact('listings', 'profile', 'user', 'page'));
     }
 

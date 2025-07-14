@@ -5,7 +5,13 @@
 @endsection
 
 @section('head')
-<input type="text" placeholder="何をお探しですか？">
+  <form class="header-search__form" action="/mypage" method="get">
+    @csrf
+    <input type="search" name="keyword" placeholder="何をお探しですか？" value="{{ request('keyword') }}">
+    @if(request('page'))
+      <input type="hidden" name="page" value="{{ request('page') }}">
+        @endif
+  </form>
   <form class="header-nav__form" action="/logout" method="post">
     @csrf
       <input type="submit" class="header-nav__button" value="ログアウト">
