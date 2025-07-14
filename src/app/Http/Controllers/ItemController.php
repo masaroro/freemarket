@@ -19,25 +19,30 @@ class ItemController extends Controller
         $keyword = $request->query('keyword');
 
         $query = Listing::with(['user', 'likes']);
-
-        if ($user && empty($user->profile)) {
-            return redirect('/mypage/profile');
-        }
-
         $page = $request->query('page');
 
-        if ($page === 'mylist') {
-            $query->whereHas('likes', function($query) use ($user) {
-                $query->where('user_id', $user->id);
-            });
-        } else {
-            $query->where('seller_id', '!=', $user->id);
+        if ($page === 'mylist' && !$user) {
+            return redirect('/login');
         }
 
-        if ($keyword) {
-            $query->where(function($q) use ($keyword) {
-                $q->where('name', 'LIKE', '%' . $keyword . '%')->orWhere('description', 'LIKE', '%' . $keyword . '%')->orWhere('brand', 'LIKE', '%' . $keyword . '%');
-            });
+        if ($user) {
+            if ($user && empty($user->profile)) {
+                return redirect('/mypage/profile');
+            }
+
+            if ($page === 'mylist') {
+                $query->whereHas('likes', function($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                });
+            } else {
+                $query->where('seller_id', '!=', $user->id);
+            }
+
+            if ($keyword) {
+                $query->where(function($q) use ($keyword) {
+                    $q->where('name', 'LIKE', '%' . $keyword . '%')->orWhere('description', 'LIKE', '%' . $keyword . '%')->orWhere('brand', 'LIKE', '%' . $keyword . '%');
+                });
+            }
         }
 
         $listings = $query->paginate(8);

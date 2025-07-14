@@ -86,7 +86,6 @@
           </table>
           <div class="order__button">
             <button type="submit">購入する</button>
-            <input type="hidden" name="item_id" value="{{ $listing->id }}">
           </div>
         </div>
       </div>

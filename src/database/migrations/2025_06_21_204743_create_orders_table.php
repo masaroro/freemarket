@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('shopping_postal_code');
             $table->string('shopping_address');
             $table->string('shopping_building');
+            $table->tinyInteger('pay_method'); // 1：コンビニ支払い, 2：カード支払い
             $table->tinyInteger('order_status')->default(0); // 0：支払い待ち, 1：完了, 2：キャンセル
             $table->timestamps();
         });

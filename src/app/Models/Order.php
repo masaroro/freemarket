@@ -10,10 +10,13 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'buyer_id',
+        'listing_id',
         'paid',
         'shopping_postal_code',
         'shopping_address',
         'shopping_building',
+        'pay_method', // 1: コンビニ支払い, 2: カード支払い
         'order_status', // 0: 支払い待ち, 1: 完了, 2: キャンセル
     ];
 
