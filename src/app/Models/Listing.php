@@ -37,4 +37,8 @@ class Listing extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function orders(){
+        return $this->hasOne(Order::class);
+    }
+
 }

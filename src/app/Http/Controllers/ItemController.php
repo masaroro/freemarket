@@ -14,15 +14,28 @@ use App\Http\Requests\ExhibitionRequest;
 
 class ItemController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $user = Auth::user();
 
         if ($user && empty($user->profile)) {
             return redirect('/mypage/profile');
         }
 
-        $listings = Listing::with(['user'])->paginate(8);
-        return view('index',compact('listings'));
+        $page = $request->query('page');
+
+        if ($page === 'mylist') {
+            $listings = Listing::with(['user', 'likes'])
+            ->whereHas('likes', function($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->paginate(8);
+
+            $listings->appends(['page' => 'mylist']);
+        } else {
+            $listings = Listing::with(['user'])->paginate(8);
+        }
+
+        return view('index',compact('listings', 'page'));
     }
 
     public function detail($item_id){
@@ -93,4 +106,5 @@ class ItemController extends Controller
 
         return redirect("/item/$item_id/");
     }
+
 }

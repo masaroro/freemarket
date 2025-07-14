@@ -21,8 +21,8 @@
 @section('content')
   <div class="item__content">
     <div class="item__tag">
-      <a href="">おすすめ</a>
-      <a href="">マイリスト</a>
+      <a href="/">おすすめ</a>
+      <a href="/?page=mylist">マイリスト</a>
     </div>
     <div class="item__list">
       @foreach ($listings as $listing)

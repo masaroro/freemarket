@@ -26,28 +26,44 @@
       </h2>
     </div>
     <div class="address__item">
-      <form class="address__form" action="/" method="post">
+      <form class="address__form" action="/purchase/address/{{ $listing->id }}" method="post">
       @csrf
         <div class="address__item">
           <div class="address__item-label">
             郵便番号
           </div>
-          <input class="address__item-input" type="text" name="postal_code" placeholder="" value="">
+          <input class="address__item-input" type="text" name="postal_code" placeholder="" value="{{ $profile->postal_code ?? '' }}">
+          <div class="error">
+            @error('postal_code')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="address__item">
           <div class="address__item-label">
             住所
           </div>
-          <input class="address__item-input" type="text" name="address" placeholder="" value="">
+          <input class="address__item-input" type="text" name="address" placeholder="" value="{{ $profile->address ?? '' }}">
+          <div class="error">
+            @error('address')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="address__item">
           <div class="address__item-label">
             建物名
           </div>
-          <input class="address__item-input" type="text" name="building" placeholder="" value="">
+          <input class="address__item-input" type="text" name="building" placeholder="" value="{{ $profile->building ?? '' }}">
+          <div class="error">
+            @error('building')
+              {{ $message }}
+            @enderror
+          </div>
         </div>
         <div class="address__button">
-          <button>更新する</button>
+          <button type="submit">更新する</button>
+          <input type="hidden" name="item_id" value="{{ $listing->id }}">
         </div>
       </form>
     </div>

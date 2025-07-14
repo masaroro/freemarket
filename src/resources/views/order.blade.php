@@ -20,7 +20,7 @@
 
 @section('content')
   <div class="order__content">
-    <form class="order__form" action="/" method="post">
+    <form class="order__form" action="/purchase/{{ $listing->id }}" method="post">
     @csrf
       <div class="order__item-detail">
         <div class="order__item">
@@ -54,9 +54,9 @@
           <div class="order__item-address">
             <div  class="order__item-postal-code">
               <span>〒</span>
-              <span>0000000</span>
+              <span>{{ $profile->postal_code }}</span>
             </div class="order__item-address">
-            <div>ここには住所と建物が入ります</div>
+            <div>{{ $profile->address }} {{ $profile->building }}</div>
           </div>
         </div>
       </div>

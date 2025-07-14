@@ -30,8 +30,8 @@
       <a href="/mypage/profile" class="profile__user-edit">プロフィールを編集</a>
     </div>
     <div class="profile__tag">
-      <a href="">出品した商品</a>
-      <a href="">購入した商品</a>
+      <a href="/mypage/?page=listing">出品した商品</a>
+      <a href="/mypage/?page=purchase">購入した商品</a>
     </div>
     <div class="profile__list">
       @foreach ($listings as $listing)

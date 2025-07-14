@@ -48,12 +48,9 @@
           <span>{{ $listing->reviews->count() }}</span>
         </div>
       </div>
-      <a href="/purchase/{{ $listing->id }}">購入手続きへa</a>
-      <form action="/purchase/{{ $listing->id }}" method="get">
-        @csrf
-        <button type="submit" class="detail__item-button">購入手続きへ</button>
-        <input type="hidden" name="item_id" value="{{ $listing->id }}">
-      </form>
+      <div class="detail__item-button">
+        <a href="/purchase/{{ $listing->id }}">購入手続きへa</a>
+      </div>
       </div>
       <div class="detail__item-description">
         商品説明

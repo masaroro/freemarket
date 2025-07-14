@@ -6,17 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Listing;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function index(){
-        $listings = Listing::with(['user'])->paginate(8);
-        $profile = Profile::where('user_id', Auth::id())->first();
+    public function index(Request $request){
         $user = Auth::user();
-        return view('profile',compact('listings', 'profile', 'user'));
+        $page = $request->query('page');
+
+        if ($page === 'listing') {
+            $listings = Listing::with(['user'])
+            ->where('seller_id', $user->id)->paginate(8);
+            $listings->appends(['page' => 'listing']);
+        } elseif ($page === 'purchase') {
+            $listings = Listing::with(['user', 'orders'])
+            ->whereHas('orders', function($query) use ($user) {
+                $query->where('buyer_id', $user->id);
+            })->paginate(8);
+            $listings->appends(['page' => 'purchase']);
+        } else {
+            $listings = Listing::with(['user'])->paginate(8);
+        }
+
+        $profile = Profile::where('user_id', Auth::id())->first();
+        return view('profile',compact('listings', 'profile', 'user', 'page'));
     }
 
     public function edit(){

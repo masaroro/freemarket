@@ -16,8 +16,27 @@ class OrderController extends Controller
         return view('order',compact('listing', 'profile'));
     }
 
+    public function store(Request $request, $item_id){
+        // ここで注文処理を実装
+        // 例えば、注文情報をデータベースに保存するなど
+        // その後、注文完了ページへリダイレクトするなどの処理を行う
+
+        return redirect("/mypage");
+    }
+
     public function edit($item_id){
-        return view('address');
+        $profile = Profile::where('user_id', auth()->id())->first();
+        $listing = Listing::find($item_id);
+        return view('address', compact('profile', 'listing'));
+    }
+
+    public function update(Request $request, $item_id){
+        $profile = Profile::where('user_id', auth()->id())->first();
+        $profile->postal_code = $request->input('postal_code');
+        $profile->address = $request->input('address');
+        $profile->building = $request->input('building');
+        $profile->save();
+        return redirect("/purchase/$item_id/");
     }
 
 }

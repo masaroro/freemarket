@@ -16,4 +16,8 @@ class Order extends Model
         'shopping_building',
         'order_status', // 0: 支払い待ち, 1: 完了, 2: キャンセル
     ];
+
+    public function listing(){
+        return $this->belongsTo(Listing::class);
+    }
 }
