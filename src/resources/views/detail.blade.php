@@ -42,7 +42,7 @@
         <span>(税込)</span>
       </div>
       <div class="detail__item-assessment">
-        <form class="detail__item-like" action="/item/{{$listing->id}}/like" method="post">
+        <form class="detail__item-like" action="/item/{{ $listing->id }}/like" method="post">
           @csrf
             <button type="submit" class="detail__item-favorite">
               <img src="/images/favorite.png" alt="いいねボタン">

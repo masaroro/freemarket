@@ -46,7 +46,7 @@
           <div class="order__item-label">
             お支払い方法
           </div>
-          <select class="order__item-select" name="" id="">
+          <select class="order__item-select" name="pay" id="">
             <option value="">選択してください</option>
             <option value="1">コンビニ支払い</option>
             <option value="2">カード支払い</option>
@@ -57,12 +57,15 @@
             <span>配送先</span>
             <a href="/purchase/address/{{ $listing->id }}">変更する</a>
           </div>
-          <div class="order__item-address">
+          <div class="order__item-shipping">
             <div  class="order__item-postal-code">
               <span>〒</span>
-              <span>{{ $profile->postal_code }}</span>
-            </div class="order__item-address">
-            <div>{{ $profile->address }} {{ $profile->building }}</div>
+              <input type="text" name="shopping_postal_code" value="{{ request('shopping_postal_code') ?? $profile->postal_code ?? '' }}">
+            </div>
+            <div class="order__item-address">
+              <input type="text" name="shopping_address" value="{{ request('shopping_address') ?? $profile->address ?? '' }}">
+              <input type="text" name="shopping_building" value="{{ request('shopping_building') ?? $profile->building ?? '' }}">
+            </div>
           </div>
         </div>
       </div>
@@ -83,6 +86,7 @@
           </table>
           <div class="order__button">
             <button type="submit">購入する</button>
+            <input type="hidden" name="item_id" value="{{ $listing->id }}">
           </div>
         </div>
       </div>
