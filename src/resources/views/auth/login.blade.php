@@ -11,7 +11,7 @@
         ログイン
       </h2>
     </div>
-    <div class="login__item">
+    <div class="login__main">
       <form class="login__form" action="/login" method="post">
       @csrf
         <div class="login__item">
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="login__button">
-          <button>ログインする</button>
+          <button type="submit" class="login__button-submit">ログインする</button>
         </div>
         <div class="login__link">
           <a href="/register">会員登録はこちら</a>
