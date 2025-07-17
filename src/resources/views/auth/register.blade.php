@@ -11,7 +11,7 @@
         会員登録
       </h2>
     </div>
-    <div class="register__item">
+    <div class="register__main">
       <form class="register__form" action="/register" method="post">
       @csrf
         <div class="register__item">
@@ -27,7 +27,7 @@
         </div>
         <div class="register__item">
           <div class="register__item-label">
-            メールアドレスで検索
+            メールアドレス
           </div>
           <input class="register__item-input" type="email"  name="email" value="{{ old('email') }}" >
           <div class="error">
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="register__button">
-          <button>登録する</button>
+          <button type="submit" class="register__button-submit">登録する</button>
         </div>
         <div class="register__link">
           <a href="/login">ログインはこちら</a>

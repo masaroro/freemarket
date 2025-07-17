@@ -1,17 +1,25 @@
 .header {
-    background: #fff;
+    background: #000000;
 }
 
 .header__inner {
     padding: 5px 10px;
     max-width: 1230px;
     font-family: 'jsMath-cmti10';
+    height: 100%;
 }
 
 .header__logo {
-    color: #F5C800;
-    font-size: 25px;
+    height: 100%;
     text-decoration: none;
+    vertical-align: middle;
+        background-color: red;
+}
+
+.header__logo img {
+    margin: 10px 0 ;
+    height: 100%;
+    vertical-align: middle;
 }
 
 body {
