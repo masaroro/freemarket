@@ -11,10 +11,13 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function index($item_id){
+    public function index(Request $request , $item_id){
         $listing = Listing::with(['user', 'categories'])->find($item_id);
         $profile = Profile::where('user_id', auth()->id())->first();
-        return view('order',compact('listing', 'profile'));
+
+        $selectedPay = $request->query('pay');
+
+        return view('order',compact('listing', 'profile', 'selectedPay'));
     }
 
     public function store(Request $request, $item_id){

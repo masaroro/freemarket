@@ -11,6 +11,7 @@ use App\Models\Like;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {
@@ -52,6 +53,12 @@ class ItemController extends Controller
     }
 
     public function detail($item_id){
+
+        $user = Auth::user();
+        if ($user && empty($user->profile)) {
+            return redirect('/mypage/profile');
+        }
+
         $listing = Listing::with(['user', 'categories', 'likes', 'reviews'])->find($item_id);
         $categories = Category::all();
         $reviews = Review::where('listing_id', $item_id)->with(['user'])->get();
@@ -108,8 +115,11 @@ class ItemController extends Controller
         return redirect("/item/$item_id/");
     }
 
-    public function comment(Request $request, $item_id){
+    public function comment(CommentRequest $request, $item_id){
         $user = Auth::user();
+        if ($user && empty($user->profile)) {
+            return redirect('/mypage/profile');
+        }
 
         Review::create([
             'user_id' => $user->id,

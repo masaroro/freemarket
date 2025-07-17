@@ -117,6 +117,11 @@
           @csrf
           <div class="detail__comment-input">
             <input type="text" name="comment"/>
+            <div class="error">
+              @error('comment')
+                {{ $message }}
+              @enderror
+            </div>
           </div>
           <button type="submit">コメントを送信する</button>
         </form>

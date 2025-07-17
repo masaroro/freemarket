@@ -37,6 +37,11 @@
             <img src="{{ asset($listing->image) }}" alt="商品画像"/>
             <div>{{$listing->name}}</div>
           </a>
+          <div class="item_sold-status">
+            @if ($listing->is_sold === 1)
+              <span class="item_status__sold">Sold</span>
+            @endif
+          </div>
         </div>
       @endforeach
     </div>
