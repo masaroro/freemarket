@@ -46,7 +46,7 @@ class ItemController extends Controller
             }
         }
 
-        $listings = $query->paginate(8);
+        $listings = $query->paginate(9);
         $listings->appends(['page' => $page, 'keyword' => $keyword]);
 
         return view('index',compact('listings', 'page', 'keyword'));

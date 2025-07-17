@@ -5,15 +5,16 @@
 .header__inner {
     padding: 5px 10px;
     max-width: 1230px;
-    font-family: 'jsMath-cmti10';
     height: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header__logo {
     height: 100%;
+    width: 30%;
     text-decoration: none;
     vertical-align: middle;
-        background-color: red;
 }
 
 .header__logo img {

@@ -36,7 +36,7 @@ class ProfileController extends Controller
 
         $profile = Profile::where('user_id', Auth::id())->first();
 
-        $listings = $query->paginate(8);
+        $listings = $query->paginate(9);
         $listings->appends(['page' => $page, 'keyword' => $keyword]);
 
         return view('profile',compact('listings', 'profile', 'user', 'page'));
