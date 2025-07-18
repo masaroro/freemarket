@@ -74,7 +74,7 @@
 }
 
 .item__list {
-  margin: 30px 30px;
+  padding: 30px 30px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -83,7 +83,6 @@
 .item__item {
   margin-bottom: 30px;
   width: 30%;
-  height: 290px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: relative;
 }
@@ -94,7 +93,7 @@
 }
 .item__img {
   width: 100%;
-  height: 100%;
+  height: 290px;
   object-fit: cover;
 }
 .item__label {
@@ -119,131 +118,4 @@
   transform: translate(-50%, -50%);
   color: #FF0000;
   font-size: 48px;
-}
-
-
-
-
-
-
-/* public/css/index.css の既存のCSSの末尾に追記してください */
-
-/* ページネーションコンテナの基本スタイル */
-.pagination {
-  display: flex;
-  /* Flexboxでアイテムを横並びにする */
-  justify-content: center;
-  /* アイテムを中央揃えにする */
-  align-items: center;
-  /* アイテムを垂直方向の中央揃えにする */
-  margin-top: 2rem;
-  /* 上部に余白 */
-  padding: 1rem 0;
-  /* 上下左右にパディング */
-  flex-wrap: wrap;
-  /* 画面幅が狭い場合に折り返す */
-  gap: 0.5rem;
-  /* アイテム間の間隔 */
-}
-
-/* 各ページネーションアイテム（li要素）のスタイル */
-.pagination .page-item {
-  list-style: none;
-  /* リストのマーカーを非表示 */
-}
-
-/* 各ページネーションリンク（a要素）と現在のページ（span要素）の共通スタイル */
-.pagination .page-link {
-  display: flex;
-  /* Flexboxでコンテンツを中央揃え */
-  justify-content: center;
-  align-items: center;
-  min-width: 2.5rem;
-  /* 最小幅を確保 */
-  height: 2.5rem;
-  /* 高さを固定 */
-  padding: 0 0.75rem;
-  /* 左右のパディング */
-  border: 1px solid #e2e8f0;
-  /* 枠線 */
-  border-radius: 0.5rem;
-  /* 角を丸くする */
-  text-decoration: none;
-  /* 下線を非表示 */
-  color: #4a5568;
-  /* 文字色 */
-  background-color: #fff;
-  /* 背景色 */
-  transition: all 0.2s ease-in-out;
-  /* ホバー時のアニメーション */
-  font-size: 0.875rem;
-  /* フォントサイズ (sm) */
-  font-weight: 500;
-  /* フォントの太さ (medium) */
-}
-
-/* ホバー時のスタイル */
-.pagination .page-item:not(.active):not(.disabled) .page-link:hover {
-  background-color: #edf2f7;
-  /* 背景色を少し暗く */
-  border-color: #cbd5e0;
-  /* 枠線の色を少し暗く */
-  color: #2d3748;
-  /* 文字色を少し濃く */
-}
-
-/* アクティブなページ（現在のページ）のスタイル */
-.pagination .page-item.active .page-link {
-  background-color: #3b82f6;
-  /* 青系の背景色 */
-  border-color: #3b82f6;
-  /* 枠線の色も青系に */
-  color: #fff;
-  /* 文字色を白に */
-  font-weight: 700;
-  /* フォントを太く */
-  cursor: default;
-  /* カーソルをデフォルトに */
-}
-
-/* 無効なリンク（例: 最初のページで「前へ」）のスタイル */
-.pagination .page-item.disabled .page-link {
-  color: #a0aec0;
-  /* 文字色を薄く */
-  background-color: #f7fafc;
-  /* 背景色を薄く */
-  border-color: #e2e8f0;
-  /* 枠線 */
-  cursor: not-allowed;
-  /* カーソルを禁止マークに */
-  opacity: 0.7;
-  /* 透明度を少し下げる */
-}
-
-/* ページ間の「...」表示のスタイル */
-.pagination .page-item.disabled .page-link.dots {
-  border: none;
-  /* 枠線を非表示 */
-  background-color: transparent;
-  /* 背景色を透明に */
-  color: #a0aec0;
-  /* 文字色を薄く */
-  cursor: default;
-  /* カーソルをデフォルトに */
-}
-
-/* レスポンシブ対応（必要に応じてブレークポイントを調整） */
-@media (max-width: 640px) {
-  .pagination {
-    gap: 0.3rem;
-    /* スマホでは間隔を少し狭く */
-  }
-
-  .pagination .page-link {
-    min-width: 2rem;
-    height: 2rem;
-    font-size: 0.75rem;
-    /* フォントサイズをさらに小さく */
-    padding: 0 0.5rem;
-  }
 }

@@ -52,7 +52,7 @@
         </div>
       @endforeach
     </div>
-    <div class="item__pagination">
+    <div class="item_pagination">
       {{ $listings->links() }}
     </div>
   </div>
