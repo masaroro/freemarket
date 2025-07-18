@@ -1,0 +1,30 @@
+.header {
+    width: 100%;
+    background: #000000;
+}
+
+.header__inner {
+    padding: 5px 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo {
+    height: 100%;
+    width: 30%;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.header__logo img {
+    margin: 10px 0 ;
+    height: 100%;
+    vertical-align: middle;
+}
+
+body {
+    margin: 0 auto;
+    background-color: #F8F8F8;
+}

@@ -1,0 +1,121 @@
+.header-search__form {
+  padding: 10px 20px;
+  width: 40%;
+}
+.header-search__input {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+.header-nav {
+  padding: 0 0 0 20px;
+  width: 30%;
+  display: flex;
+  justify-content: right;
+}
+.header-nav__form {
+  margin: auto 0;
+  margin-right: 20px;
+  font-size: 16px;
+  align-items: center;
+}
+.header-nav__logout {
+  width: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  color:#FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+}
+.header-nav__login,
+.header-nav__mypage {
+  margin: auto 0;
+  margin-right: 20px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+.header-nav__listing {
+  margin: auto 0;
+  padding: 5px 15px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.item__content {
+  width: 100%;
+}
+.item__tag {
+  margin-top: 10px;
+  padding: 5px 20px;
+  border-bottom: #000000 1px solid;
+}
+.item__tag a {
+  margin-left: 30px;
+  text-decoration: none;
+}
+.item__tag-red {
+  color: #FF0000;
+}
+.item__tag-black {
+  color: #000000;
+}
+
+.item__list {
+  padding: 30px 30px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.item__item {
+  margin-bottom: 30px;
+  width: 30%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+}
+.item__link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+.item__img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+}
+.item__label {
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+.item__status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  background-color:#F8F8F8;
+  opacity: 0.5;
+}
+.item__status-sold {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FF0000;
+  font-size: 48px;
+}

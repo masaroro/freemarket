@@ -1,0 +1,150 @@
+.header-search__form {
+  padding: 10px 20px;
+  width: 40%;
+}
+.header-search__input {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
+.header-nav {
+  padding: 0 0 0 20px;
+  width: 30%;
+  display: flex;
+  justify-content: right;
+}
+.header-nav__form {
+  margin: auto 0;
+  margin-right: 20px;
+  font-size: 16px;
+  align-items: center;
+}
+.header-nav__logout {
+  width: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+}
+.header-nav__login,
+.header-nav__mypage {
+  margin: auto 0;
+  margin-right: 20px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+.header-nav__listing {
+  margin: auto 0;
+  padding: 5px 15px;
+  font-size: 16px;
+  color: #000000;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.profile__content {
+  width: 100%;
+}
+.profile__user {
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.profile__user-img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+.profile__user-name {
+  margin: 0 30px;
+  font-size: 36px;
+  color: #000000;
+}
+.profile__user-edit {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #FF5555;
+  border: 1px solid #FF5555;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile__tag {
+  margin-top: 10px;
+  padding: 5px 20px;
+  border-bottom: #000000 1px solid;
+}
+.profile__tag a {
+  margin-left: 30px;
+  text-decoration: none;
+}
+.profile__tag-red {
+  color: #FF0000;
+}
+.profile__tag-black {
+  color: #000000;
+}
+
+.profile__list {
+  padding: 30px 30px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.profile__item {
+  margin-bottom: 30px;
+  width: 30%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.profile__item-link {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+.profile__item-img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+}
+.profile__item-label {
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+.profile__item-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  background-color: #F8F8F8;
+  opacity: 0.5;
+}
+.profile__item-status-sold {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FF0000;
+  font-size: 48px;
+}

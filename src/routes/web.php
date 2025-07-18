@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('order');
+// });
+
+Route::get('/', [ItemController::class, 'index']);
+
+Route::get('/item/{item_id}', [ItemController::class, 'detail']);
+
+Route::middleware(['auth', 'verified'])->group(function () {
+  Route::post('/item/{item_id}/like', [ItemController::class, 'like']);
+  Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
+  Route::get('/purchase/{item_id}', [OrderController::class, 'index']);
+  Route::post('/purchase/{item_id}', [OrderController::class, 'store']);
+  Route::get('/purchase/address/{item_id}', [OrderController::class, 'edit']);
+  Route::post('/purchase/address/{item_id}', [OrderController::class, 'update']);
+  Route::get('/sell', [ItemController::class, 'create']);
+  Route::post('/sell', [ItemController::class, 'store']);
+  Route::get('/mypage', [ProfileController::class, 'index']);
+  Route::get('/mypage/profile', [ProfileController::class, 'edit']);
+  Route::post('/mypage/profile', [ProfileController::class, 'update']);
 });
-
-
