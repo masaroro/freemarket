@@ -10,6 +10,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\AddressRequest;
 
 class ProfileController extends Controller
 {
@@ -48,7 +49,7 @@ class ProfileController extends Controller
         return view('setting',compact('user', 'profile'));
     }
 
-    public function update(Request $request){
+    public function update(AddressRequest $request){
         $user = Auth::user();
         $user->name = $request->input('name');
         $user->save();
