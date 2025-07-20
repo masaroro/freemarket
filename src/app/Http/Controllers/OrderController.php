@@ -15,7 +15,7 @@ class OrderController extends Controller
         $listing = Listing::with(['user', 'categories'])->find($item_id);
         $profile = Profile::where('user_id', auth()->id())->first();
 
-        $selectedPay = $request->query('pay');
+        $selectedPay = $request->pay;
 
         return view('order',compact('listing', 'profile', 'selectedPay'));
     }
@@ -54,7 +54,10 @@ class OrderController extends Controller
         $shopping_postal_code = $request->input('shopping_postal_code');
         $shopping_address = $request->input('shopping_address');
         $shopping_building = $request->input('shopping_building');
-        return view('order', compact('listing','shopping_postal_code', 'shopping_address', 'shopping_building'));
+
+        $selectedPay = $request->query('pay');
+
+        return view('order', compact('listing','shopping_postal_code', 'shopping_address', 'shopping_building','selectedPay'));
     }
 
 }

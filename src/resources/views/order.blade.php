@@ -44,7 +44,7 @@
           <div class="order__item-label">
             お支払い方法
           </div>
-          <form class="order__item-form" action="/purchase/{{ $listing->id }}" method="get">
+          <form class="order__item-form" action="/purchase/{{ $listing->id }}/method" method="post">
             @csrf
             <input type="hidden" name="item_id" value="{{ $listing->id }}">
             <input type="hidden" name="shopping_postal_code" value="{{ request('shopping_postal_code') ?? $profile->postal_code ?? '' }}">
