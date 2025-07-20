@@ -43,10 +43,9 @@
             @else
               <img src="{{ asset('images/default_gray.png') }}" alt="デフォルトプロフィール画像">
             @endif
-            <label for="setting__file">
+            <input type="file" name="image" id="image-upload-button" class="hidden-file-input"/>
+            <label for="image-upload-button" class="custom-file-upload">
               画像を選択する
-              <input type="file" name="image" id="setting__file"/>
-            </label>
           </div>
         </div>
         <div class="setting__item">
