@@ -7,42 +7,44 @@
 @section('head')
   <form class="header-search__form" action="/" method="get">
     @csrf
-    <input type="search" name="keyword" placeholder="何をお探しですか？" value="{{ request('keyword') }}">
+    <input type="search" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}" class="header-search__input">
     @if(request('page'))
       <input type="hidden" name="page" value="{{ request('page') }}">
-        @endif
+    @endif
   </form>
-  @if (Auth::check())
-    <form class="header-nav__form" action="/logout" method="post">
-    @csrf
-      <input type="submit" class="header-nav__button" value="ログアウト">
-    </form>
-  @else
-    <a href="/login">ログイン</a>
-  @endif
-  <a href="/mypage">マイページ</a>
-  <a href="/sell">出品</a>
+  <div class="header-nav">
+    @if (Auth::check())
+      <form class="header-nav__form" action="/logout" method="post">
+      @csrf
+        <input type="submit" class="header-nav__logout" value="ログアウト">
+      </form>
+    @else
+      <a href="/login" class="header-nav__login">ログイン</a>
+    @endif
+    <a href="/mypage" class="header-nav__mypage">マイページ</a>
+    <a href="/sell" class="header-nav__listing">出品</a>
+  </div>
 @endsection
 
 @section('content')
   <div class="order__content">
     <div class="order__item-detail">
       <div class="order__item">
-        <div class="order__item-img">
+        <div class="order__item-main">
           <img src="{{ asset($listing->image) }}" alt="商品画像">
-        </div>
-        <div class="order__item-label">
-          <div class="order__item-name">
-            {{ $listing->name }}
+          <div class="order__item-title">
+            <div class="order__item-name">
+              {{ $listing->name }}
+            </div>
+            <div class="order__item-price">
+              <span>￥</span><!--
+            --><span>{{ number_format($listing->price) }}</span>
+            </div>
           </div>
-          <div class="order__item-price">
-            <span>￥</span>
-            <span>{{ number_format($listing->price) }}</span>
-          </div>
         </div>
-        <div class="order__item">
-          <div class="order__item-label">
-            お支払い方法
+        <div class="order__pay">
+          <div class="order__pay-label">
+            支払い方法
           </div>
           <form class="order__item-form" action="/purchase/{{ $listing->id }}/method" method="post">
             @csrf
@@ -55,35 +57,41 @@
               <option value="1" {{ (request('pay') == '1' || (!request('pay') && $selectedPay == '1')) ? 'selected' : '' }}>コンビニ支払い</option>
               <option value="2" {{ (request('pay') == '2' || (!request('pay') && $selectedPay == '2')) ? 'selected' : '' }}>カード支払い</option>
             </select>
+            <div class="error">
+              @error('pay')
+                {{ $message }}
+              @enderror
+            </div>
           </form>
         </div>
-      <div class="order__item">
-        <div class="order__item-label">
-          <span>配送先</span>
-          <a href="/purchase/address/{{ $listing->id }}">変更する</a>
-        </div>
-        <div class="order__item-shipping">
-          <div  class="order__item-postal-code">
-            <span>〒</span>
-            <input type="text" name="shopping_postal_code" value="{{ request('shopping_postal_code') ?? $profile->postal_code ?? '' }}">
+        <div class="order__address">
+          <div class="order__address-label">
+            <span>配送先</span>
+            <a href="/purchase/address/{{ $listing->id }}">変更する</a>
           </div>
-          <div class="order__item-address">
-            <input type="text" name="shopping_address" value="{{ request('shopping_address') ?? $profile->address ?? '' }}">
-            <input type="text" name="shopping_building" value="{{ request('shopping_building') ?? $profile->building ?? '' }}">
+          <div class="order__item-shipping">
+            <div  class="order__item-postal-code">
+              <span>〒</span><!--
+            --><input type="text" name="shopping_postal_code" value="{{ request('shopping_postal_code') ?? $profile->postal_code ?? '' }}" readonly>
+            </div>
+            <div class="order__item-address">
+              <input type="text" name="shopping_address" value="{{ request('shopping_address') ?? $profile->address ?? '' }}" readonly>
+              <input type="text" name="shopping_building" value="{{ request('shopping_building') ?? $profile->building ?? '' }}" readonly>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <form class="order__form" action="/purchase/{{ $listing->id }}" method="post">
       @csrf
-      <div class="order__item-price">
-        <div class="order__item-label">
+      <div class="order__price">
+        <div class="order__label">
           <table>
             <tr>
               <th>商品代金</th>
               <td>
-                <span>￥</span>
-                <span>{{ number_format($listing->price) }}</span>
+                <span>￥</span><!--
+              --><span>{{ number_format($listing->price) }}</span>
               </td>
             </tr>
             <tr>
@@ -105,7 +113,7 @@
           <input type="hidden" name="shopping_building" value="{{ request('shopping_building') ?? $profile->building ?? '' }}">
           <input type="hidden" name="pay" value="{{ $selectedPay }}">
           <div class="order__button">
-            <button type="submit">購入する</button>
+            <button type="submit" class="order__button-submit">購入する</button>
           </div>
         </div>
       </div>
