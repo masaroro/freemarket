@@ -9,7 +9,6 @@ use App\Models\Profile;
 use App\Models\Category;
 use App\Models\Order;
 use App\Http\Requests\PurchaseRequest;
-use App\Http\Requests\AddressRequest;
 
 class OrderController extends Controller
 {
