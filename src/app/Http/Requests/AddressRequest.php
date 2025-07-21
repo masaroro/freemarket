@@ -24,6 +24,7 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
+            'image' => 'nullable|image|mimes:jpeg,png',
             'name' => 'required',
             'postal_code' => 'required|regex:/^\d{3}-\d{4}$/',
             'address' => 'required',
@@ -34,6 +35,8 @@ class AddressRequest extends FormRequest
     public function messages()
     {
         return [
+            'image.image' => '画像ファイルをアップロードしてください',
+            'image.mimes' => 'JPEGまたはPNG形式の画像をアップロードしてください',
             'name.required' => 'お名前を入力してください',
             'postal_code.required' => '郵便番号を入力してください',
             'postal_code.regex' => '郵便番号はXXX-XXXXの形式で入力してください',

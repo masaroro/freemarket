@@ -50,7 +50,7 @@
             @csrf
             <input type="hidden" name="item_id" value="{{ $listing->id }}">
             <input type="hidden" name="shopping_postal_code" value="{{ request('shopping_postal_code') ?? $profile->postal_code ?? '' }}">
-            <input type="hidden" name="shopping_address" value="{{ request('shopping_address') ?? $profile->address ?? '' }}">
+            <input type="hidden" name="shopping_address" value="{{ request('shopping_ address') ?? $profile->address ?? '' }}">
             <input type="hidden" name="shopping_building" value="{{ request('shopping_building') ?? $profile->building ?? '' }}">
             <select class="order__item-select" name="pay" onchange="this.form.submit()">
               <option value="">選択してください</option>
@@ -73,10 +73,25 @@
             <div  class="order__item-postal-code">
               <span>〒</span><!--
             --><input type="text" name="shopping_postal_code" value="{{ request('shopping_postal_code') ?? $profile->postal_code ?? '' }}" readonly>
+              <div class="error">
+                @error('shopping_postal_code')
+                  {{ $message }}
+                @enderror
+            </div>
             </div>
             <div class="order__item-address">
               <input type="text" name="shopping_address" value="{{ request('shopping_address') ?? $profile->address ?? '' }}" readonly>
               <input type="text" name="shopping_building" value="{{ request('shopping_building') ?? $profile->building ?? '' }}" readonly>
+              <div class="error">
+                @error('shopping_address')
+                  {{ $message }}
+                @enderror
+              </div>
+              <div class="shopping_building">
+                @error('pay')
+                  {{ $message }}
+                @enderror
+              </div>
             </div>
           </div>
         </div>

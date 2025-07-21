@@ -90,6 +90,7 @@
 }
 .order__item-main img {
   width: 30%;
+  margin-bottom: 20px;
 }
 .order__item-title {
   width: 70%;

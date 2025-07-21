@@ -41,37 +41,23 @@
             郵便番号
           </div>
           <input class="address__item-input" type="text" name="shopping_postal_code" placeholder="" value="{{ $profile->postal_code ?? '' }}">
-          <div class="error">
-            @error('postal_code')
-              {{ $message }}
-            @enderror
-          </div>
         </div>
         <div class="address__item">
           <div class="address__item-label">
             住所
           </div>
           <input class="address__item-input" type="text" name="shopping_address" placeholder="" value="{{ $profile->address ?? '' }}">
-          <div class="error">
-            @error('address')
-              {{ $message }}
-            @enderror
-          </div>
         </div>
         <div class="address__item">
           <div class="address__item-label">
             建物名
           </div>
           <input class="address__item-input" type="text" name="shopping_building" placeholder="" value="{{ $profile->building ?? '' }}">
-          <div class="error">
-            @error('building')
-              {{ $message }}
-            @enderror
-          </div>
         </div>
         <div class="address__button">
           <button type="submit" class="address__button-submit">更新する</button>
           <input type="hidden" name="item_id" value="{{ $listing->id }}">
+          <input type="hidden" name="name" value="{{ $profile->id }}">
         </div>
       </form>
     </div>
