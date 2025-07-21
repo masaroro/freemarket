@@ -56,11 +56,14 @@
 
 .item__content {
   width: 100%;
+  margin-bottom: 50px;
+  text-align: center;
 }
 .item__tag {
   margin-top: 10px;
   padding: 5px 20px;
   border-bottom: #000000 1px solid;
+  text-align: left;
 }
 .item__tag a {
   margin-left: 30px;

@@ -46,7 +46,7 @@ class ItemController extends Controller
             }
         }
 
-        $listings = $query->paginate(9);
+        $listings = $query->simplePaginate(9);
         $listings->appends(['page' => $page, 'keyword' => $keyword]);
 
         return view('index',compact('listings', 'page', 'keyword'));
@@ -71,7 +71,7 @@ class ItemController extends Controller
         return view('listing', compact('categories'));
     }
 
-    public function store(Request $request){
+    public function store(ExhibitionRequest $request){
         $listing = new Listing();
         $listing->seller_id = Auth::id();
 
